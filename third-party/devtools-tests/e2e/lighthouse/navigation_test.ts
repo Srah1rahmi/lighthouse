@@ -78,7 +78,6 @@ describe('Navigation', function() {
       'best-practices',
       'seo',
       'pwa',
-      'lighthouse-plugin-publisher-ads',
     ]);
 
     let numNavigations = 0;
