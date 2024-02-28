@@ -9,14 +9,14 @@
  * origin are over the http/2 protocol.
  */
 
-/** @typedef {import('../../lib/dependency-graph/simulator/simulator').Simulator} Simulator */
-/** @typedef {import('../../lib/dependency-graph/base-node.js').Node} Node */
+/** @typedef {import('../../lib/lantern/simulator/simulator.js').Simulator} Simulator */
+/** @typedef {import('../../lib/lantern/base-node.js').Node} Node */
 
 import {Audit} from '../audit.js';
 import {EntityClassification} from '../../computed/entity-classification.js';
 import UrlUtils from '../../lib/url-utils.js';
 import {LanternInteractive} from '../../computed/metrics/lantern-interactive.js';
-import {NetworkRequest} from '../../lib/dependency-graph/network-request.js';
+import {NetworkRequest} from '../../lib/lantern/network-request.js';
 import {NetworkRecords} from '../../computed/network-records.js';
 import {LoadSimulator} from '../../computed/load-simulator.js';
 import {PageDependencyGraph} from '../../computed/page-dependency-graph.js';

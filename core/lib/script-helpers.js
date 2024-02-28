@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import {NetworkRequest} from './dependency-graph/network-request.js';
+import {NetworkRequest} from './lantern/network-request.js';
 
 /**
  * @param {LH.Artifacts.Script} script

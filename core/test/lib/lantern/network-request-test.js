@@ -4,9 +4,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import {NetworkRequest} from '../../lib/dependency-graph/network-request.js';
-import {NetworkRecorder} from '../../lib/network-recorder.js';
-import {networkRecordsToDevtoolsLog} from '../network-records-to-devtools-log.js';
+import {NetworkRequest} from '../../../lib/lantern/network-request.js';
+import {NetworkRecorder} from '../../../lib/network-recorder.js';
+import {networkRecordsToDevtoolsLog} from '../../network-records-to-devtools-log.js';
 
 describe('NetworkRequest', () => {
   afterEach(() => {

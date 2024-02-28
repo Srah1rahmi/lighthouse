@@ -5,8 +5,8 @@
  */
 
 import {LighthouseError} from './lh-error.js';
-import {NetworkAnalyzer} from './dependency-graph/simulator/network-analyzer.js';
-import {NetworkRequest} from './dependency-graph/network-request.js';
+import {NetworkAnalyzer} from './lantern/simulator/network-analyzer.js';
+import {NetworkRequest} from './lantern/network-request.js';
 import * as i18n from '../lib/i18n/i18n.js';
 
 const UIStrings = {

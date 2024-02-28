@@ -11,18 +11,18 @@
 
 import {Audit} from '../audit.js';
 import * as i18n from '../../lib/i18n/i18n.js';
-import {BaseNode} from '../../lib/dependency-graph/base-node.js';
+import {BaseNode} from '../../lib/lantern/base-node.js';
 import {UnusedCSS} from '../../computed/unused-css.js';
-import {NetworkRequest} from '../../lib/dependency-graph/network-request.js';
+import {NetworkRequest} from '../../lib/lantern/network-request.js';
 import {ProcessedNavigation} from '../../computed/processed-navigation.js';
 import {LoadSimulator} from '../../computed/load-simulator.js';
 import {FirstContentfulPaint} from '../../computed/metrics/first-contentful-paint.js';
 import {LCPImageRecord} from '../../computed/lcp-image-record.js';
 
 
-/** @typedef {import('../../lib/dependency-graph/simulator/simulator').Simulator} Simulator */
-/** @typedef {import('../../lib/dependency-graph/base-node.js').Node} Node */
-/** @typedef {import('../../lib/dependency-graph/network-node.js')} NetworkNode */
+/** @typedef {import('../../lib/lantern/simulator/simulator.js').Simulator} Simulator */
+/** @typedef {import('../../lib/lantern/base-node.js').Node} Node */
+/** @typedef {import('../../lib/lantern/network-node.js')} NetworkNode */
 
 // Because of the way we detect blocking stylesheets, asynchronously loaded
 // CSS with link[rel=preload] and an onload handler (see https://github.com/filamentgroup/loadCSS)
