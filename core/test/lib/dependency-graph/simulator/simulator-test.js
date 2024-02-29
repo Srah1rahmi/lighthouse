@@ -12,6 +12,7 @@ import {Simulator} from '../../../../lib/dependency-graph/simulator/simulator.js
 import {DNSCache} from '../../../../lib/dependency-graph/simulator/dns-cache.js';
 import {PageDependencyGraph} from '../../../../computed/page-dependency-graph.js';
 import {getURLArtifactFromDevtoolsLog, readJson} from '../../../test-utils.js';
+import {NetworkRequest} from '../../../../lib/network-request.js';
 
 const pwaTrace = readJson('../../../fixtures/traces/progressive-app-m60.json', import.meta);
 const pwaDevtoolsLog = readJson('../../../fixtures/traces/progressive-app-m60.devtools.log.json', import.meta);
@@ -27,7 +28,7 @@ function request(opts) {
   delete opts.startTime;
   delete opts.endTime;
 
-  return Object.assign({
+  return Object.assign(new NetworkRequest(), {
     requestId: opts.requestId || nextRequestId++,
     url,
     transferSize: opts.transferSize || 1000,

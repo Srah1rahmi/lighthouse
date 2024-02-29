@@ -4,13 +4,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import * as LH from '../../../types/lh.js';
+import * as Lantern from './lantern.js';
 import {BaseNode} from './base-node.js';
-import {NetworkRequest} from '../network-request.js';
 
 class NetworkNode extends BaseNode {
   /**
-   * @param {LH.Artifacts.NetworkRequest} networkRecord
+   * @param {Lantern.NetworkRequest} networkRecord
    */
   constructor(networkRecord) {
     super(networkRecord.requestId);
@@ -37,7 +36,7 @@ class NetworkNode extends BaseNode {
   }
 
   /**
-   * @return {LH.Artifacts.NetworkRequest}
+   * @return {Lantern.NetworkRequest}
    */
   get record() {
     return this._record;
@@ -61,7 +60,10 @@ class NetworkNode extends BaseNode {
    * @return {boolean}
    */
   get isNonNetworkProtocol() {
-    return NetworkRequest.isNonNetworkRequest(this._record);
+    if (!this._record.isNonNetworkRequest) {
+      console.log(this._record.url, this._record.isNonNetworkRequest);
+    }
+    return this._record.isNonNetworkRequest();
   }
 
 
@@ -79,8 +81,8 @@ class NetworkNode extends BaseNode {
    */
   hasRenderBlockingPriority() {
     const priority = this._record.priority;
-    const isScript = this._record.resourceType === NetworkRequest.TYPES.Script;
-    const isDocument = this._record.resourceType === NetworkRequest.TYPES.Document;
+    const isScript = this._record.resourceType === Lantern.NetworkRequest.TYPES.Script;
+    const isDocument = this._record.resourceType === Lantern.NetworkRequest.TYPES.Document;
     const isBlockingScript = priority === 'High' && isScript;
     const isBlockingHtmlImport = priority === 'High' && isDocument;
     return priority === 'VeryHigh' || isBlockingScript || isBlockingHtmlImport;
