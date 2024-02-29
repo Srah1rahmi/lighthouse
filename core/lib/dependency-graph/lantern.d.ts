@@ -4,6 +4,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import * as LH from '../../../types/lh.js'
+
 export type HeaderEntry = {
     name: string;
     value: string;
@@ -265,7 +267,7 @@ export namespace NetworkRequest {
     export { HEADER_FETCHED_SIZE };
     export { HEADER_PROTOCOL_IS_H2 };
 }
-import * as LH from '../../../types/lh.js';
+
 declare const HEADER_TCP: "X-TCPMs";
 declare const HEADER_SSL: "X-SSLMs";
 declare const HEADER_REQ: "X-RequestMs";
