@@ -60,9 +60,6 @@ class NetworkNode extends BaseNode {
    * @return {boolean}
    */
   get isNonNetworkProtocol() {
-    if (!this._record.isNonNetworkRequest) {
-      console.log(this._record.url, this._record.isNonNetworkRequest);
-    }
     return this._record.isNonNetworkRequest();
   }
 
