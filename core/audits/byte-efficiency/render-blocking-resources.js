@@ -21,8 +21,8 @@ import {LCPImageRecord} from '../../computed/lcp-image-record.js';
 
 
 /** @typedef {import('../../lib/dependency-graph/simulator/simulator').Simulator} Simulator */
-/** @typedef {import('../../lib/dependency-graph/base-node.js').Node} Node */
-/** @typedef {import('../../lib/dependency-graph/network-node.js')} NetworkNode */
+/** @typedef {import('../../lib/dependency-graph/base-node.js').Node<LH.Artifacts.NetworkRequest>} Node */
+/** @typedef {import('../../lib/dependency-graph/network-node').NetworkNode<LH.Artifacts.NetworkRequest>} NetworkNode */
 
 // Because of the way we detect blocking stylesheets, asynchronously loaded
 // CSS with link[rel=preload] and an onload handler (see https://github.com/filamentgroup/loadCSS)

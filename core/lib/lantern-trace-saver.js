@@ -32,9 +32,11 @@ function convertNodeTimingsToTrace(nodeTimings) {
       // Represent all CPU work that was bundled in a task as an EvaluateScript event
       traceEvents.push(...createFakeTaskEvents(node, timing));
     } else {
+      /** @type {LH.Artifacts.NetworkRequest} */
+      const record = node.record;
       // Ignore data URIs as they don't really add much value
-      if (/^data/.test(node.record.url)) continue;
-      traceEvents.push(...createFakeNetworkEvents(requestId, node.record, timing));
+      if (/^data/.test(record.url)) continue;
+      traceEvents.push(...createFakeNetworkEvents(requestId, record, timing));
       requestId++;
     }
   }

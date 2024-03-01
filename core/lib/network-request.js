@@ -53,6 +53,7 @@
  */
 
 import * as LH from '../../types/lh.js';
+import * as Lantern from './dependency-graph/lantern.js';
 import UrlUtils from './url-utils.js';
 
 // Lightrider X-Header names for timing information.
@@ -180,6 +181,17 @@ class NetworkRequest {
     /** @type {LH.Protocol.TargetType|undefined} */
     this.sessionTargetType = undefined;
     this.isLinkPreload = false;
+  }
+
+  /**
+   * @return {Lantern.NetworkRequest<NetworkRequest>}
+   */
+  asLanternNetworkRequest() {
+    return {
+      ...this,
+      record: this,
+      isNonNetworkRequest: () => this.isNonNetworkRequest(),
+    };
   }
 
   /**

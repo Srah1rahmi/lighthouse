@@ -60,6 +60,7 @@ export class NetworkRequest<T=any> {
     /** When the last byte of the response body is received, in milliseconds. */
     networkEndTime: number;
     transferSize: number;
+    resourceSize: number;
     fromDiskCache: boolean;
     fromMemoryCache: boolean;
     // TODO(15841): remove from lantern.
