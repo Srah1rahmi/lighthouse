@@ -19,10 +19,10 @@ import {DocumentUrls} from './document-urls.js';
 
 /**
  * @typedef {Object} NetworkNodeOutput
- * @property {Array<NetworkNode>} nodes
- * @property {Map<string, NetworkNode>} idToNodeMap
- * @property {Map<string, Array<NetworkNode>>} urlToNodeMap
- * @property {Map<string, NetworkNode|null>} frameIdToNodeMap
+ * @property {Array<NetworkNode<LH.Artifacts.NetworkRequest>>} nodes
+ * @property {Map<string, NetworkNode<LH.Artifacts.NetworkRequest>>} idToNodeMap
+ * @property {Map<string, Array<NetworkNode<LH.Artifacts.NetworkRequest>>>} urlToNodeMap
+ * @property {Map<string, NetworkNode<LH.Artifacts.NetworkRequest>|null>} frameIdToNodeMap
  */
 
 // Shorter tasks have negligible impact on simulation results.
@@ -88,7 +88,13 @@ class PageDependencyGraph {
         record.requestId += ':duplicate';
       }
 
-      const node = new NetworkNode(record);
+      const node = new NetworkNode({
+        ...record,
+        record,
+        isNonNetworkRequest() {
+          return record.isNonNetworkRequest();
+        },
+      });
       nodes.push(node);
 
       const urlList = urlToNodeMap.get(record.url) || [];

@@ -14,12 +14,18 @@ import {readJson} from '../test-utils.js';
 const devtoolsLog = readJson('../fixtures/traces/progressive-app-m60.devtools.log.json', import.meta);
 
 function createNetworkNode() {
-  const record = Object.assign(new NetworkRequest(), {
+  const record = Object.assign({
     requestId: '1',
     protocol: 'http',
     parsedURL: {scheme: 'http', securityOrigin: 'https://pwa.rocks'},
   });
-  return new NetworkNode(record);
+  return new NetworkNode({
+    ...record,
+    record,
+    isNonNetworkRequest() {
+      return NetworkRequest.isNonNetworkRequest(record);
+    },
+  });
 }
 
 describe('Simulator artifact', () => {

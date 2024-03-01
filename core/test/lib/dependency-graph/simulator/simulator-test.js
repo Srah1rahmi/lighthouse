@@ -28,7 +28,7 @@ function request(opts) {
   delete opts.startTime;
   delete opts.endTime;
 
-  return Object.assign(new NetworkRequest(), {
+  const record = Object.assign({
     requestId: opts.requestId || nextRequestId++,
     url,
     transferSize: opts.transferSize || 1000,
@@ -38,6 +38,13 @@ function request(opts) {
     rendererStartTime,
     networkEndTime,
   }, opts);
+  return {
+    ...record,
+    record,
+    isNonNetworkRequest() {
+      return NetworkRequest.isNonNetworkRequest(record);
+    },
+  };
 }
 
 function cpuTask({tid, ts, duration}) {
