@@ -7,14 +7,18 @@
 import * as Lantern from './lantern.js';
 import {BaseNode} from './base-node.js';
 
+/**
+ * @template [T=any]
+ * @extends {BaseNode<T>}
+ */
 class NetworkNode extends BaseNode {
   /**
-   * @param {Lantern.NetworkRequest} networkRecord
+   * @param {Lantern.NetworkRequest<T>} networkRequest
    */
-  constructor(networkRecord) {
-    super(networkRecord.requestId);
+  constructor(networkRequest) {
+    super(networkRequest.requestId);
     /** @private */
-    this._record = networkRecord;
+    this._request = networkRequest;
   }
 
   get type() {
@@ -25,42 +29,49 @@ class NetworkNode extends BaseNode {
    * @return {number}
    */
   get startTime() {
-    return this._record.rendererStartTime * 1000;
+    return this._request.rendererStartTime * 1000;
   }
 
   /**
    * @return {number}
    */
   get endTime() {
-    return this._record.networkEndTime * 1000;
+    return this._request.networkEndTime * 1000;
   }
 
   /**
-   * @return {Lantern.NetworkRequest}
+   * @return {T}
    */
   get record() {
-    return this._record;
+    return /** @type {T} */ (this._request.record);
+  }
+
+  /**
+   * @return {Lantern.NetworkRequest<T>}
+   */
+  get request() {
+    return this._request;
   }
 
   /**
    * @return {string}
    */
   get initiatorType() {
-    return this._record.initiator && this._record.initiator.type;
+    return this._request.initiator && this._request.initiator.type;
   }
 
   /**
    * @return {boolean}
    */
   get fromDiskCache() {
-    return !!this._record.fromDiskCache;
+    return !!this._request.fromDiskCache;
   }
 
   /**
    * @return {boolean}
    */
   get isNonNetworkProtocol() {
-    return this._record.isNonNetworkRequest();
+    return this._request.isNonNetworkRequest();
   }
 
 
@@ -77,19 +88,19 @@ class NetworkNode extends BaseNode {
    * @return {boolean}
    */
   hasRenderBlockingPriority() {
-    const priority = this._record.priority;
-    const isScript = this._record.resourceType === Lantern.NetworkRequest.TYPES.Script;
-    const isDocument = this._record.resourceType === Lantern.NetworkRequest.TYPES.Document;
+    const priority = this._request.priority;
+    const isScript = this._request.resourceType === Lantern.NetworkRequest.TYPES.Script;
+    const isDocument = this._request.resourceType === Lantern.NetworkRequest.TYPES.Document;
     const isBlockingScript = priority === 'High' && isScript;
     const isBlockingHtmlImport = priority === 'High' && isDocument;
     return priority === 'VeryHigh' || isBlockingScript || isBlockingHtmlImport;
   }
 
   /**
-   * @return {NetworkNode}
+   * @return {NetworkNode<T>}
    */
   cloneWithoutRelationships() {
-    const node = new NetworkNode(this._record);
+    const node = new NetworkNode(this._request);
     node.setIsMainDocument(this._isMainDocument);
     return node;
   }

@@ -495,9 +495,10 @@ class NetworkAnalyzer {
   }
 
   /**
-   * @param {Array<Lantern.NetworkRequest>} records
+   * @template {Lantern.NetworkRequest} T
+   * @param {Array<T>} records
    * @param {string} resourceUrl
-   * @return {Lantern.NetworkRequest|undefined}
+   * @return {T|undefined}
    */
   static findResourceForUrl(records, resourceUrl) {
     // equalWithExcludedFragments is expensive, so check that the resourceUrl starts with the request url first
@@ -508,9 +509,10 @@ class NetworkAnalyzer {
   }
 
   /**
-   * @param {Array<Lantern.NetworkRequest>} records
+   * @template {Lantern.NetworkRequest} T
+   * @param {Array<T>} records
    * @param {string} resourceUrl
-   * @return {Lantern.NetworkRequest|undefined}
+   * @return {T|undefined}
    */
   static findLastDocumentForUrl(records, resourceUrl) {
     // equalWithExcludedFragments is expensive, so check that the resourceUrl starts with the request url first
@@ -527,11 +529,12 @@ class NetworkAnalyzer {
    * Resolves redirect chain given a main document.
    * See: {@link NetworkAnalyzer.findLastDocumentForUrl}) for how to retrieve main document.
    *
-   * @param {Lantern.NetworkRequest} request
-   * @return {Lantern.NetworkRequest}
+   * @template {Lantern.NetworkRequest} T
+   * @param {T} request
+   * @return {T}
    */
   static resolveRedirects(request) {
-    while (request.redirectDestination) request = request.redirectDestination;
+    while (request.redirectDestination) request = /** @type {T} */(request.redirectDestination);
     return request;
   }
 }
