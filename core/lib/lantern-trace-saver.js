@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-/** @typedef {import('./dependency-graph/base-node.js').Node} Node */
+/** @typedef {import('./dependency-graph/base-node.js').Node<LH.Artifacts.NetworkRequest>} Node */
 /** @typedef {import('./dependency-graph/simulator/simulator.js').CompleteNodeTiming} CompleteNodeTiming */
 
 /**

@@ -42,7 +42,7 @@ class NetworkNode extends BaseNode {
   }
 
   /**
-   * @return {T}
+   * @return {Readonly<T>}
    */
   get record() {
     return /** @type {Required<T>} */ (this._request.record);

@@ -4592,15 +4592,15 @@
       "id": "unminified-javascript",
       "title": "Minify JavaScript",
       "description": "Minifying JavaScript files can reduce payload sizes and script parse time. [Learn how to minify JavaScript](https://developer.chrome.com/docs/lighthouse/performance/unminified-javascript/).",
-      "score": 0.5,
+      "score": 0,
       "scoreDisplayMode": "metricSavings",
-      "numericValue": 0,
+      "numericValue": 1200,
       "numericUnit": "millisecond",
       "displayValue": "Potential savings of 81 KiB",
       "warnings": [],
       "metricSavings": {
         "FCP": 0,
-        "LCP": 0
+        "LCP": 650
       },
       "details": {
         "type": "opportunity",
@@ -4629,7 +4629,7 @@
             "wastedPercent": 50.176166426166425
           }
         ],
-        "overallSavingsMs": 0,
+        "overallSavingsMs": 1200,
         "overallSavingsBytes": 83453,
         "sortedBy": [
           "wastedBytes"
@@ -4638,7 +4638,7 @@
           "type": "debugdata",
           "metricSavings": {
             "FCP": 0,
-            "LCP": 0
+            "LCP": 630
           }
         }
       },
@@ -4680,14 +4680,14 @@
       "id": "unused-javascript",
       "title": "Reduce unused JavaScript",
       "description": "Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. [Learn how to reduce unused JavaScript](https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/).",
-      "score": 0.5,
+      "score": 0,
       "scoreDisplayMode": "metricSavings",
-      "numericValue": 0,
+      "numericValue": 750,
       "numericUnit": "millisecond",
       "displayValue": "Potential savings of 63 KiB",
       "metricSavings": {
         "FCP": 0,
-        "LCP": 0
+        "LCP": 350
       },
       "details": {
         "type": "opportunity",
@@ -4732,7 +4732,7 @@
             "wastedPercent": 70.99531129443884
           }
         ],
-        "overallSavingsMs": 0,
+        "overallSavingsMs": 750,
         "overallSavingsBytes": 64572,
         "sortedBy": [
           "wastedBytes"
@@ -4741,7 +4741,7 @@
           "type": "debugdata",
           "metricSavings": {
             "FCP": 0,
-            "LCP": 0
+            "LCP": 330
           }
         }
       },
@@ -4751,15 +4751,15 @@
       "id": "modern-image-formats",
       "title": "Serve images in next-gen formats",
       "description": "Image formats like WebP and AVIF often provide better compression than PNG or JPEG, which means faster downloads and less data consumption. [Learn more about modern image formats](https://developer.chrome.com/docs/lighthouse/performance/uses-webp-images/).",
-      "score": 0.5,
+      "score": 0,
       "scoreDisplayMode": "metricSavings",
-      "numericValue": 0,
+      "numericValue": 450,
       "numericUnit": "millisecond",
       "displayValue": "Potential savings of 76 KiB",
       "warnings": [],
       "metricSavings": {
         "FCP": 0,
-        "LCP": 0
+        "LCP": 350
       },
       "details": {
         "type": "opportunity",
@@ -4851,7 +4851,7 @@
             "wastedWebpBytes": 9002
           }
         ],
-        "overallSavingsMs": 0,
+        "overallSavingsMs": 450,
         "overallSavingsBytes": 77874.3,
         "sortedBy": [
           "wastedBytes"
@@ -4860,7 +4860,7 @@
           "type": "debugdata",
           "metricSavings": {
             "FCP": 0,
-            "LCP": 0
+            "LCP": 330
           }
         }
       },
@@ -4903,14 +4903,14 @@
       "id": "uses-text-compression",
       "title": "Enable text compression",
       "description": "Text-based resources should be served with compression (gzip, deflate or brotli) to minimize total network bytes. [Learn more about text compression](https://developer.chrome.com/docs/lighthouse/performance/uses-text-compression/).",
-      "score": 0.5,
+      "score": 0,
       "scoreDisplayMode": "metricSavings",
-      "numericValue": 0,
+      "numericValue": 2400,
       "numericUnit": "millisecond",
       "displayValue": "Potential savings of 143 KiB",
       "metricSavings": {
-        "FCP": 0,
-        "LCP": 0
+        "FCP": 150,
+        "LCP": 950
       },
       "details": {
         "type": "opportunity",
@@ -4943,7 +4943,7 @@
             "wastedBytes": 11647
           }
         ],
-        "overallSavingsMs": 0,
+        "overallSavingsMs": 2400,
         "overallSavingsBytes": 146478,
         "sortedBy": [
           "wastedBytes"
@@ -4951,8 +4951,8 @@
         "debugData": {
           "type": "debugdata",
           "metricSavings": {
-            "FCP": 0,
-            "LCP": 0
+            "FCP": 150,
+            "LCP": 930
           }
         }
       },
@@ -4996,7 +4996,7 @@
       "description": "Large GIFs are inefficient for delivering animated content. Consider using MPEG4/WebM videos for animations and PNG/WebP for static images instead of GIF to save network bytes. [Learn more about efficient video formats](https://developer.chrome.com/docs/lighthouse/performance/efficient-animated-content/)",
       "score": 0.5,
       "scoreDisplayMode": "metricSavings",
-      "numericValue": 0,
+      "numericValue": 3300,
       "numericUnit": "millisecond",
       "displayValue": "Potential savings of 666 KiB",
       "metricSavings": {
@@ -5029,7 +5029,7 @@
             "wastedBytes": 682028
           }
         ],
-        "overallSavingsMs": 0,
+        "overallSavingsMs": 3300,
         "overallSavingsBytes": 682028,
         "sortedBy": [
           "wastedBytes"
@@ -5080,14 +5080,14 @@
       "id": "legacy-javascript",
       "title": "Avoid serving legacy JavaScript to modern browsers",
       "description": "Polyfills and transforms enable legacy browsers to use new JavaScript features. However, many aren't necessary for modern browsers. For your bundled JavaScript, adopt a modern script deployment strategy using module/nomodule feature detection to reduce the amount of code shipped to modern browsers, while retaining support for legacy browsers. [Learn how to use modern JavaScript](https://web.dev/articles/publish-modern-javascript)",
-      "score": 0.5,
+      "score": 0,
       "scoreDisplayMode": "metricSavings",
-      "numericValue": 0,
+      "numericValue": 450,
       "numericUnit": "millisecond",
       "displayValue": "Potential savings of 26 KiB",
       "metricSavings": {
         "FCP": 0,
-        "LCP": 0
+        "LCP": 300
       },
       "details": {
         "type": "opportunity",
@@ -5147,7 +5147,7 @@
             "totalBytes": 0
           }
         ],
-        "overallSavingsMs": 0,
+        "overallSavingsMs": 450,
         "overallSavingsBytes": 26585,
         "sortedBy": [
           "wastedBytes"
@@ -5156,7 +5156,7 @@
           "type": "debugdata",
           "metricSavings": {
             "FCP": 0,
-            "LCP": 0
+            "LCP": 300
           }
         }
       },

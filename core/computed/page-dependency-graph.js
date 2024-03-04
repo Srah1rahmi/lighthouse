@@ -14,7 +14,7 @@ import {NetworkRecords} from './network-records.js';
 import {NetworkAnalyzer} from '../lib/dependency-graph/simulator/network-analyzer.js';
 import {DocumentUrls} from './document-urls.js';
 
-/** @typedef {import('../lib/dependency-graph/base-node.js').Node} Node */
+/** @typedef {import('../lib/dependency-graph/base-node.js').Node<LH.Artifacts.NetworkRequest>} Node */
 /** @typedef {Omit<LH.Artifacts['URL'], 'finalDisplayedUrl'>} URLArtifact */
 
 /**

@@ -94,7 +94,7 @@ class UsesHTTP2Audit extends Audit {
       if (!urlsToChange.has(node.record.url)) return;
 
       originalProtocols.set(node.record.requestId, node.record.protocol);
-      node.record.protocol = 'h2';
+      node.request.protocol = 'h2';
     });
 
     const simulationAfter = simulator.simulate(graph, {label: afterLabel, flexibleOrdering});
@@ -104,7 +104,7 @@ class UsesHTTP2Audit extends Audit {
       if (node.type !== 'network') return;
       const originalProtocol = originalProtocols.get(node.record.requestId);
       if (originalProtocol === undefined) return;
-      node.record.protocol = originalProtocol;
+      node.request.protocol = originalProtocol;
     });
 
     const savings = simulationBefore.timeInMs - simulationAfter.timeInMs;

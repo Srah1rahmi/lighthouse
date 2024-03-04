@@ -125,10 +125,10 @@ class ByteEfficiencyAudit extends Audit {
       const wastedBytes = wastedBytesByUrl.get(node.record.url);
       if (!wastedBytes) return;
 
-      const original = node.record.transferSize;
-      originalTransferSizes.set(node.record.requestId, original);
+      const original = node.request.transferSize;
+      originalTransferSizes.set(node.request.requestId, original);
 
-      node.record.transferSize = Math.max(original - wastedBytes, 0);
+      node.request.transferSize = Math.max(original - wastedBytes, 0);
     });
 
     const simulationAfterChanges = simulator.simulate(graph, {label: afterLabel});
@@ -136,9 +136,9 @@ class ByteEfficiencyAudit extends Audit {
     // Restore the original transfer size after we've done our simulation
     graph.traverse(node => {
       if (node.type !== 'network') return;
-      const originalTransferSize = originalTransferSizes.get(node.record.requestId);
+      const originalTransferSize = originalTransferSizes.get(node.request.requestId);
       if (originalTransferSize === undefined) return;
-      node.record.transferSize = originalTransferSize;
+      node.request.transferSize = originalTransferSize;
     });
 
     const savings = simulationBeforeChanges.timeInMs - simulationAfterChanges.timeInMs;

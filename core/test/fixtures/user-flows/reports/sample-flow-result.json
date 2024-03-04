@@ -21099,7 +21099,7 @@
             "description": "Image formats like WebP and AVIF often provide better compression than PNG or JPEG, which means faster downloads and less data consumption. [Learn more about modern image formats](https://developer.chrome.com/docs/lighthouse/performance/uses-webp-images/).",
             "score": 0,
             "scoreDisplayMode": "metricSavings",
-            "numericValue": 0,
+            "numericValue": 300,
             "numericUnit": "millisecond",
             "displayValue": "Potential savings of 67 KiB",
             "warnings": [],
@@ -21157,7 +21157,7 @@
                   "wastedWebpBytes": 65184
                 }
               ],
-              "overallSavingsMs": 0,
+              "overallSavingsMs": 300,
               "overallSavingsBytes": 68889.75,
               "sortedBy": [
                 "wastedBytes"
@@ -21243,12 +21243,12 @@
             "description": "Serve images that are appropriately-sized to save cellular data and improve load time. [Learn how to size images](https://developer.chrome.com/docs/lighthouse/performance/uses-responsive-images/).",
             "score": 0,
             "scoreDisplayMode": "metricSavings",
-            "numericValue": 0,
+            "numericValue": 300,
             "numericUnit": "millisecond",
             "displayValue": "Potential savings of 51 KiB",
             "metricSavings": {
               "FCP": 0,
-              "LCP": 250
+              "LCP": 300
             },
             "details": {
               "type": "opportunity",
@@ -21298,7 +21298,7 @@
                   "wastedPercent": 42.666446934739625
                 }
               ],
-              "overallSavingsMs": 0,
+              "overallSavingsMs": 300,
               "overallSavingsBytes": 52102,
               "sortedBy": [
                 "wastedBytes"
@@ -21307,7 +21307,7 @@
                 "type": "debugdata",
                 "metricSavings": {
                   "FCP": 0,
-                  "LCP": 250
+                  "LCP": 300
                 }
               }
             },
