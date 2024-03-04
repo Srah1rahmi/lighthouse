@@ -38,13 +38,7 @@ function request(opts) {
     rendererStartTime,
     networkEndTime,
   }, opts);
-  return {
-    ...record,
-    record,
-    isNonNetworkRequest() {
-      return NetworkRequest.isNonNetworkRequest(record);
-    },
-  };
+  return NetworkRequest.asLanternNetworkRequest(record);
 }
 
 function cpuTask({tid, ts, duration}) {
