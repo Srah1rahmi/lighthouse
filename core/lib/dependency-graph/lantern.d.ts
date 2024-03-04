@@ -41,6 +41,7 @@ export class NetworkRequest<T=any> {
 
     static get TYPES(): LH.Util.SelfMap<LH.Crdp.Network.ResourceType>;
 
+    // TODO(15841): bring impl of isNonNetworkRequest inside lantern and remove this.
     isNonNetworkRequest(): boolean;
     requestId: string;
     connectionId: string;
