@@ -88,7 +88,7 @@ class PageDependencyGraph {
         record.requestId += ':duplicate';
       }
 
-      const node = new NetworkNode(record.asLanternNetworkRequest());
+      const node = new NetworkNode(NetworkRequest.asLanternNetworkRequest(record));
       nodes.push(node);
 
       const urlList = urlToNodeMap.get(record.url) || [];

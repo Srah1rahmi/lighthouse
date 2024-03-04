@@ -136,7 +136,7 @@ const networkRecords = [
     finished: true,
     sessionTargetType: 'worker', // ignore for being from a worker
   },
-].map((record) => Object.assign(new NetworkRequest(), record));
+];
 
 describe('Optimized responses', () => {
   let context;

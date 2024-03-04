@@ -6,6 +6,8 @@
 
 import * as Lantern from './lantern.js';
 import {BaseNode} from './base-node.js';
+// TODO(15841): bring impl of isNonNetworkRequest inside lantern and remove this.
+import UrlUtils from '../url-utils.js';
 
 /**
  * @template [T=any]
@@ -71,9 +73,11 @@ class NetworkNode extends BaseNode {
    * @return {boolean}
    */
   get isNonNetworkProtocol() {
-    return this._request.isNonNetworkRequest();
+    // The 'protocol' field in devtools a string more like a `scheme`
+    return UrlUtils.isNonNetworkProtocol(this.request.protocol) ||
+      // But `protocol` can fail to be populated if the request fails, so fallback to scheme.
+      UrlUtils.isNonNetworkProtocol(this.request.parsedURL.scheme);
   }
-
 
   /**
    * Returns whether this network record can be downloaded without a TCP connection.

@@ -184,17 +184,6 @@ class NetworkRequest {
   }
 
   /**
-   * @return {Lantern.NetworkRequest<NetworkRequest>}
-   */
-  asLanternNetworkRequest() {
-    return {
-      ...this,
-      record: this,
-      isNonNetworkRequest: () => this.isNonNetworkRequest(),
-    };
-  }
-
-  /**
    * @return {boolean}
    */
   hasErrorStatusCode() {
@@ -582,6 +571,17 @@ class NetworkRequest {
 
   /**
    * @param {NetworkRequest} record
+   * @return {Lantern.NetworkRequest<NetworkRequest>}
+   */
+  static asLanternNetworkRequest(record) {
+    return {
+      ...record,
+      record,
+    };
+  }
+
+  /**
+   * @param {NetworkRequest} record
    * @return {boolean}
    */
   static isNonNetworkRequest(record) {
@@ -589,13 +589,6 @@ class NetworkRequest {
     return UrlUtils.isNonNetworkProtocol(record.protocol) ||
       // But `protocol` can fail to be populated if the request fails, so fallback to scheme.
       UrlUtils.isNonNetworkProtocol(record.parsedURL.scheme);
-  }
-
-  /**
-   * @return {boolean}
-   */
-  isNonNetworkRequest() {
-    return NetworkRequest.isNonNetworkRequest(this);
   }
 
   /**
