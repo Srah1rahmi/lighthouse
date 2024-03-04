@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import * as LH from '../../../types/lh.js'
+import * as LH from '../lh.js'
 
 export type ParsedURL = {
     /**

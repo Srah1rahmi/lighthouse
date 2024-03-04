@@ -89,8 +89,8 @@ class NetworkNode extends BaseNode {
    */
   hasRenderBlockingPriority() {
     const priority = this._request.priority;
-    const isScript = this._request.resourceType === Lantern.NetworkRequest.TYPES.Script;
-    const isDocument = this._request.resourceType === Lantern.NetworkRequest.TYPES.Document;
+    const isScript = this._request.resourceType === Lantern.NetworkRequestTypes.Script;
+    const isDocument = this._request.resourceType === Lantern.NetworkRequestTypes.Document;
     const isBlockingScript = priority === 'High' && isScript;
     const isBlockingHtmlImport = priority === 'High' && isDocument;
     return priority === 'VeryHigh' || isBlockingScript || isBlockingHtmlImport;
