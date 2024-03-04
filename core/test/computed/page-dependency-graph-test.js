@@ -23,7 +23,7 @@ function createRequest(
   sessionTargetType = 'page'
 ) {
   const networkEndTime = rendererStartTime + 50;
-  return {
+  return Object.assign(new NetworkRequest(), {
     requestId,
     url,
     rendererStartTime,
@@ -31,7 +31,7 @@ function createRequest(
     initiator,
     resourceType,
     sessionTargetType,
-  };
+  });
 }
 
 const TOPLEVEL_TASK_NAME = 'TaskQueueManager::ProcessTaskFromWorkQueue';
@@ -144,15 +144,23 @@ describe('PageDependencyGraph computed artifact:', () => {
     });
 
     it('should index nodes by frame', () => {
+      const create = (requestId, url, documentURL, frameId, resourceType) => {
+        const request = createRequest(requestId, url);
+        request.documentURL = documentURL;
+        request.frameId = frameId;
+        request.frameId = frameId;
+        if (resourceType)
+          request.resourceType = NetworkRequest.TYPES.XHR;
+        return request;
+      };
       const networkNodeOutput = PageDependencyGraph.getNetworkNodeOutput([
-        {...createRequest(1, 'https://example.com/'), documentURL: 'https://example.com/', frameId: 'A'},
-        {...createRequest(2, 'https://example.com/page'), documentURL: 'https://example.com/', frameId: 'A'},
-        {...createRequest(3, 'https://example.com/page2'), documentURL: 'https://example.com/page2', frameId: 'C',
-          resourceType: NetworkRequest.TYPES.XHR},
-        {...createRequest(4, 'https://example.com/page3'), documentURL: 'https://example.com/page3', frameId: 'D'},
-        {...createRequest(4, 'https://example.com/page4'), documentURL: 'https://example.com/page4', frameId: undefined},
-        {...createRequest(4, 'https://example.com/page5'), documentURL: 'https://example.com/page5', frameId: 'collision'},
-        {...createRequest(4, 'https://example.com/page6'), documentURL: 'https://example.com/page6', frameId: 'collision'},
+        create(1, 'https://example.com/', 'https://example.com/', 'A'),
+        create(2, 'https://example.com/page', 'https://example.com/', 'A'),
+        create(3, 'https://example.com/page2', 'https://example.com/page2', 'C', NetworkRequest.TYPES.XHR),
+        create(4, 'https://example.com/page3', 'https://example.com/page3', 'D'),
+        create(4, 'https://example.com/page4', 'https://example.com/page4', undefined),
+        create(4, 'https://example.com/page5', 'https://example.com/page5', 'collision'),
+        create(4, 'https://example.com/page6', 'https://example.com/page6', 'collision'),
       ]);
 
       const nodes = networkNodeOutput.nodes;
@@ -384,16 +392,12 @@ describe('PageDependencyGraph computed artifact:', () => {
 
     it('should not prune highly-connected short tasks', () => {
       const request0 = createRequest(0, 'https://example.com/page0', 0);
-      const request1 = {
-        ...createRequest(1, 'https://example.com/', 100, null, NetworkRequest.TYPES.Document),
-        documentURL: 'https://example.com/',
-        frameId: 'frame1',
-      };
-      const request2 = {
-        ...createRequest(2, 'https://example.com/page', 200, null, NetworkRequest.TYPES.Script),
-        documentURL: 'https://example.com/',
-        frameId: 'frame1',
-      };
+      const request1 = createRequest(1, 'https://example.com/', 100, null, NetworkRequest.TYPES.Document);
+      request1.documentURL = 'https://example.com/';
+      request1.frameId = 'frame1';
+      const request2 = createRequest(2, 'https://example.com/page', 200, null, NetworkRequest.TYPES.Script);
+      request2.documentURL = 'https://example.com/';
+      request2.frameId = 'frame1';
       const request3 = createRequest(3, 'https://example.com/page2', 300, null, NetworkRequest.TYPES.XHR);
       const request4 = createRequest(4, 'https://example.com/page3', 400, null, NetworkRequest.TYPES.XHR);
       const networkRecords = [request0, request1, request2, request3, request4];
